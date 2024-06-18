@@ -45,7 +45,7 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |
-          echo "Deploying to Cloud Run..."
+          echo "Deploying to Cloud Run.."
           gcloud run deploy angular-service\
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} \
             --platform managed \
