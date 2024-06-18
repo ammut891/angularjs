@@ -33,21 +33,15 @@ jobs:
         run: gcloud auth configure-docker
 
       - name: Build Docker image
-        run: |
-          echo "Building the Docker image..."
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} .
-          docker images
+        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} .
 
       - name: Push Docker image
-        run: |
-          echo "Pushing the Docker image..."
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }}
+        run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
-          echo "Deploying to Cloud Run.."
-          gcloud run deploy angular-service\
+          gcloud run deploy your-service-name \
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} \
             --platform managed \
-            --region us-central1 \
+            --region your-region \
             --allow-unauthenticated
