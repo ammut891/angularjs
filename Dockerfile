@@ -16,7 +16,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copy the built Angular app from the build stage
-COPY --from=build /app/dist/my-new-app /usr/share/nginx/html
+COPY --from=build /app/dist/myNewApp /usr/share/nginx/html
 
 # Copy custom Nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
