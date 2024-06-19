@@ -34,16 +34,16 @@ jobs:
 
       - name: Build Docker image
         run: |
-          echo "GCP Project ID: steel-magpie-426708-v2"
-          docker build -t gcr.io/steel-magpie-426708-v2/angular-repo/angular-image:${{ github.sha }} .
+          echo "GCP Project ID: acoustic-result-300916"
+          docker build -t gcr.io/acoustic-result-300916/angular-repo/angular-image:${{ github.sha }} .
 
       - name: Push Docker image
-        run: docker push gcr.io/steel-magpie-426708-v2/angular-repo/angular-image:${{ github.sha }}
+        run: docker push gcr.io/acoustic-result-300916/angular-repo/angular-image:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy your-service-name \
-            --image gcr.io/steel-magpie-426708-v2/angular-repo/angular-image:${{ github.sha }} \
+            --image gcr.io/acoustic-result-300916/angular-repo/angular-image:${{ github.sha }} \
             --platform managed \
             --region your-region \
             --allow-unauthenticated
