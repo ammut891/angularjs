@@ -32,11 +32,10 @@ jobs:
       - name: Set up Docker credentials
         run: gcloud auth configure-docker
 
-      - name: Print GCP Project ID
-        run: echo "GCP Project ID: ${{ secrets.GCP_PROJECT_ID }}"
-
       - name: Build Docker image
-        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} .
+        run: |
+          echo "GCP Project ID: ${{ secrets.GCP_PROJECT_ID }}"
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} .
 
       - name: Push Docker image
         run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }}
