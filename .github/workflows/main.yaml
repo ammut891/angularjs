@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: npm run build --prod
+        run: npm run build -- --prod  # Corrected to use double dash for prod
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -33,7 +33,7 @@ jobs:
         run: gcloud auth configure-docker
 
       - name: Print GCP Project ID
-        run: echo "GCP Project ID: ${{ secrets.GCP_PROJECT_ID }}"  
+        run: echo "GCP Project ID: ${{ secrets.GCP_PROJECT_ID }}"
 
       - name: Build Docker image
         run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} .
