@@ -28,6 +28,7 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+          log_http: true
 
       - name: Set up Docker credentials
         run: gcloud auth configure-docker
@@ -47,4 +48,3 @@ jobs:
             --platform managed \
             --region your-region \
             --allow-unauthenticated
-            
