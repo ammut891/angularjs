@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: npm run build -- --prod  # Corrected to use double dash for prod
+        run: npm run build --prod
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -45,5 +45,5 @@ jobs:
           gcloud run deploy your-service-name \
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/angular-repo/angular-image:${{ github.sha }} \
             --platform managed \
-            --region us-central1 \
+            --region your-region \
             --allow-unauthenticated
