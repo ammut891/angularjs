@@ -42,9 +42,10 @@ jobs:
         run: docker push us-central1-docker.pkg.dev/steel-magpie-426708-v2/angular-repo/angular-image:${{ github.sha }}
 
       - name: Deploy to Cloud Run
-        run: |
-          gcloud run deploy angular-cloudrun \
-            --image us-central1-docker.pkg.dev/steel-magpie-426708-v2/angular-repo/angular-image:${{ github.sha }} \
-            --platform managed \
-            --region us-central1 \
-            --allow-unauthenticated
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v3
+        with:
+          service: angular-cloudrun
+          region: us-central1
+          # NOTE: If using a pre-built image, update the image name here
+          image: us-central1-docker.pkg.dev/steel-magpie-426708-v2/angular-repo/angular-image:${{ github.sha }} \
